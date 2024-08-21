@@ -8,6 +8,7 @@ export type Reference = OpenAPIV3.ReferenceObject & { description?: string };
 export type Metadata = {
   avatar?: string;
   author?: string;
+  conversation_starters?: string[];
 } & {
   [key: string]: unknown;
 };
@@ -72,7 +73,6 @@ export type Assistant = {
   description: string | null;
   file_ids: string[];
   instructions: string | null;
-  conversation_starters?: string[];
   metadata: Metadata | null;
   model: string;
   name: string | null;
@@ -88,7 +88,6 @@ export type AssistantCreateParams = {
   description?: string | null;
   file_ids?: string[];
   instructions?: string | null;
-  conversation_starters?: string[];
   metadata?: Metadata | null;
   name?: string | null;
   tools?: Array<FunctionTool | string>;
@@ -101,7 +100,6 @@ export type AssistantUpdateParams = {
   description?: string | null;
   file_ids?: string[];
   instructions?: string | null;
-  conversation_starters?: string[];
   metadata?: Metadata | null;
   name?: string | null;
   tools?: Array<FunctionTool | string>;

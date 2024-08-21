@@ -47,8 +47,7 @@ export default function AssistantConversationStarters({
               placeholder={localize('com_assistants_conversation_starters_placeholder')}
               onChange={(e) => {
                 const newValues = [e.target.value];
-                const filteredValues = newValues.filter((value) => value.trim() !== '');
-                field.onChange(filteredValues);
+                field.onChange(newValues);
               }}
               onKeyDown={(e) => {
                 if (e.key === 'Enter') {
@@ -88,8 +87,7 @@ export default function AssistantConversationStarters({
                 onChange={(e) => {
                   const newValues = [...field.value];
                   newValues[index] = e.target.value;
-                  const filteredValues = newValues.filter((value) => value.trim() !== '');
-                  field.onChange(filteredValues);
+                  field.onChange(newValues);
                 }}
                 onKeyDown={(e) => {
                   if (index === 0 && e.key === 'Enter') {
@@ -126,8 +124,7 @@ export default function AssistantConversationStarters({
                         className="transition-color absolute right-1 top-1 flex size-7 items-center justify-center rounded-lg duration-200 hover:bg-surface-hover"
                         onClick={() => {
                           const newValues = field.value.filter((_, i) => i !== index);
-                          const filteredValues = newValues.filter((value) => value.trim() !== '');
-                          field.onChange(filteredValues);
+                          field.onChange(newValues);
                         }}
                       >
                         <X className="size-4" />

@@ -29,6 +29,7 @@ import AssistantTool from './AssistantTool';
 import { Spinner } from '~/components/svg';
 import Knowledge from './Knowledge';
 import { Panel } from '~/common';
+import conversation from '~/store/conversation';
 
 const labelClass = 'mb-2 text-token-text-primary block font-medium';
 const inputClass = cn(
@@ -67,6 +68,9 @@ export default function AssistantPanel({
   const assistant = useWatch({ control, name: 'assistant' });
   const functions = useWatch({ control, name: 'functions' });
   const assistant_id = useWatch({ control, name: 'id' });
+  const conversation_starters = useWatch({ control, name: 'metadata.conversation_starters' });
+
+  console.log({ conversation_starters });
 
   const activeModel = useMemo(() => {
     return assistantMap?.[endpoint]?.[assistant_id]?.model;
@@ -165,9 +169,12 @@ export default function AssistantPanel({
       name,
       description,
       instructions,
+      metadata: { conversation_starters },
       model,
       // file_ids, // TODO: add file handling here
     } = data;
+
+    const validConversationStarters = conversation_starters ?? undefined;
 
     if (assistant_id) {
       update.mutate({
@@ -176,6 +183,9 @@ export default function AssistantPanel({
           name,
           description,
           instructions,
+          metadata: {
+            conversation_starters: validConversationStarters,
+          },
           model,
           tools,
           endpoint,
@@ -188,6 +198,9 @@ export default function AssistantPanel({
       name,
       description,
       instructions,
+      metadata: {
+        conversation_starters: validConversationStarters,
+      },
       model,
       tools,
       endpoint,
@@ -327,11 +340,14 @@ export default function AssistantPanel({
               {localize('com_assistants_conversation_starters')}
             </label>
             <Controller
-              name="conversation_starters"
+              name="metadata.conversation_starters"
               control={control}
               defaultValue={['']}
               render={({ field }) => (
-                <AssistantConversationStarters field={field} inputClass={inputClass} />
+                <AssistantConversationStarters
+                  field={field as { value: string[]; onChange: (value: string[]) => void }}
+                  inputClass={inputClass}
+                />
               )}
             />
           </div>

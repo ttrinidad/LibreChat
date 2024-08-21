@@ -19,10 +19,6 @@ const assistantSchema = mongoose.Schema(
       },
       default: undefined,
     },
-    conversation_starters: {
-      type: [String],
-      default: [],
-    },
     access_level: {
       type: Number,
     },
