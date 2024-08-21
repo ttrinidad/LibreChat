@@ -23,7 +23,7 @@ export type AssistantForm = {
   description: string | null;
   instructions: string | null;
   metadata: {
-    conversation_starters: string[] | null;
+    conversation_starters: string | null;
   };
   model: string;
   functions: string[];

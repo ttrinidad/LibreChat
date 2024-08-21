@@ -61,6 +61,9 @@ export const defaultAssistantFormValues = {
   name: '',
   description: '',
   instructions: '',
+  metadata: {
+    conversation_starters: '',
+  },
   model: '',
   functions: [],
   code_interpreter: false,

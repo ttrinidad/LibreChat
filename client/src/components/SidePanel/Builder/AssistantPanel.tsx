@@ -342,10 +342,10 @@ export default function AssistantPanel({
             <Controller
               name="metadata.conversation_starters"
               control={control}
-              defaultValue={['']}
+              defaultValue={''}
               render={({ field }) => (
                 <AssistantConversationStarters
-                  field={field as { value: string[]; onChange: (value: string[]) => void }}
+                  field={field as { value: string; onChange: (value: string) => void }}
                   inputClass={inputClass}
                 />
               )}

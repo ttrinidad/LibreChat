@@ -36,9 +36,10 @@ const createAssistant = async (req, res) => {
     assistantData.metadata = {
       author: req.user.id,
       endpoint,
-      conversation_starters: Array.isArray(req.body.metadata.conversation_starters)
-        ? req.body.metadata.conversation_starters.join(', ')
-        : req.body.metadata.conversation_starters,
+      conversation_starters: req.body.metadata?.conversation_starters,
+      // conversation_starters: Array.isArray(req.body.metadata.conversation_starters)
+      //   ? req.body.metadata.conversation_starters.join(', ')
+      //   : req.body.metadata.conversation_starters,
     };
 
     const assistant = await openai.beta.assistants.create(assistantData);

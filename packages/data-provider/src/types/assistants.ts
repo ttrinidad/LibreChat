@@ -8,7 +8,7 @@ export type Reference = OpenAPIV3.ReferenceObject & { description?: string };
 export type Metadata = {
   avatar?: string;
   author?: string;
-  conversation_starters?: string[];
+  conversation_starters?: string;
 } & {
   [key: string]: unknown;
 };
